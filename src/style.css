@@ -1,0 +1,12 @@
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+}
+
+#game_place {
+  width: 500px;
+  padding: 10px;
+  border: 2px solid #5042f4;
+}
