@@ -1,22 +1,42 @@
 import './style.css';
 
-class User {
+import{ SIZE } from "./utils/const";
+import { Field } from './field';
+import { Ship } from "./ship";
+import { Game } from "./game";
 
-    id: number;
-    name: string;
-    constructor(userId: number, userName: string) {
 
-        this.id = userId;
-        this.name = userName;
-    }
-    getInfo(): string {
-        return "id:" + this.id + " name:" + this.name;
+let place = new Field();
+console.log(place);
+let ship = new Ship(4);
+console.log(ship);
+ship.coord = [{x:2,y:3},{x:2,y:4},{x:2,y:5},{x:2,y:6}];
+console.log(ship.coord);
+
+let game = new Game();
+const allShips = game.getAllShip();
+
+console.log(game.ships);
+
+for(let i = 0; i < game.ships.length; i++){
+    let newShip = document.createElement('div');
+    newShip.id = `ship${i}`;
+    newShip.draggable = true;
+    document.getElementById('ships').appendChild(newShip);
+    for(let j = 0; j < game.ships[i].size; j++) {
+        let section = document.createElement('span');
+        section.className = 'section-ship';
+        document.getElementById(`ship${i}`).appendChild(section);
     }
 }
 
-let tom: User = new User(1, "Tom");
-console.log(tom.getInfo());
-tom.id = 4;
+const userPlace = document.getElementById('user_place');
 
-let alice: User = new User(2, "Alice");
-console.log(alice.getInfo());
+for(let i = 0; i < SIZE; i++){
+    for(let j = 0; j < SIZE; j++){
+        let cellPlace = document.createElement('div');
+        cellPlace.className = 'cell';
+        userPlace.appendChild(cellPlace);
+    }
+}
+
